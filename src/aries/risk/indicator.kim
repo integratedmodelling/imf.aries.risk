@@ -13,10 +13,15 @@ model value of aries.risk.concepts:Exposure
 	im:Normalized count of demography:HumanIndividual named normalized_population
 	set to [normalized_population];
 
+//model value of aries.risk.concepts:Vulnerability  
+//	observing 
+//    im:Normalized monetary value of infrastructure:Building named normalized_value_of_building
+//    set to [1 - normalized_value_of_building];     
+
 model value of aries.risk.concepts:Vulnerability  
 	observing 
-    im:Normalized monetary value of infrastructure:Building named normalized_value_of_building
-    set to [1 - normalized_value_of_building];     
+    im:Normalized (im:Mean im:Height of infrastructure:Building) named normalized_height_of_building
+    set to [normalized_height_of_building]; 
     
   	   
 /* Using Ordered Weighted Averages (OWA) to create a composite risk indicator
@@ -29,8 +34,8 @@ model value of aries.risk.concepts:Vulnerability
 model aries.risk.concepts:Risk  
 	    observing 
 	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Hazard,
-	    	@criterion(relweight ?= 1.5) value of aries.risk.concepts:Exposure,
-	    	@criterion(relweight ?= 0.5) value of aries.risk.concepts:Vulnerability   
+	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Exposure,
+	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Vulnerability   
 	     using im.mca.owa(interpolate_weights = false);
 // risk_profile = 0.5,
 // balanced_risk_prof = false
