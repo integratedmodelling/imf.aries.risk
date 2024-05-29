@@ -3,17 +3,17 @@ using aries.risk.concepts;
 
 /* R = f (H, E, V)  */
 
-model value of aries.risk.concepts:Hazard //named normalized_lst
+model value of aries.risk.concepts:Hazard 
    observing
    im:Normalized aries.risk.concepts:LandSurfaceTemperature named normalized_lst
    set to [normalized_lst];    
 
-model value of aries.risk.concepts:Exposure //named normalized_population     
+model value of aries.risk.concepts:Exposure     
 	observing 
 	im:Normalized count of demography:HumanIndividual named normalized_population
 	set to [normalized_population];
 
-model value of aries.risk.concepts:Vulnerability //named normalized_value_of_building  
+model value of aries.risk.concepts:Vulnerability  
 	observing 
     im:Normalized monetary value of infrastructure:Building named normalized_value_of_building
     set to [normalized_value_of_building];   
@@ -22,31 +22,21 @@ model value of aries.risk.concepts:Vulnerability //named normalized_value_of_bui
 /* Using Ordered Weighted Averages (OWA) to create a composite risk indicator
  * (OWA resolver only takes value of or numbers as input)
  */
- 
-//THIS SHOULD WORK 
-//@parameter(label = 'Risk aversion', default=0.5, name = risk_profile)
-//@parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
-//@parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
-//model aries.risk.concepts:Risk  
-//	    observing 
-//	    	@criterion(relweight ?= 0.5) value of aries.risk.concepts:Hazard,
-//	    	@criterion(relweight ?= 0.5) value of aries.risk.concepts:Exposure,
-//	    	@criterion(relweight ?= 0.5) value of aries.risk.concepts:Vulnerability   
-//	     using im.mca.owa(interpolate_weights = false);
+  
+@parameter(label = 'Risk aversion', default=0.5, name = risk_profile)
+@parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
+@parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
+model aries.risk.concepts:Risk  
+	    observing 
+	    	@criterion(relweight ?= 0.5) value of aries.risk.concepts:Hazard,
+	    	@criterion(relweight ?= 0.5) value of aries.risk.concepts:Exposure,
+	    	@criterion(relweight ?= 0.5) value of aries.risk.concepts:Vulnerability   
+	     using im.mca.owa(interpolate_weights = false);
 // risk_profile = 0.5,
 // balanced_risk_prof = false
 // ratio_balance = 1
 
-/* TEST */
-@parameter(label = 'Risk aversion', default=0.5, name = risk_profile)
-@parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
-@parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
-//number xxxx
-//	    observing 
-//	    	@criterion(relweight ?= 0.5) normalized_lst,
-//	    	@criterion(relweight ?= 0.5) normalized_population,
-//	    	@criterion(relweight ?= 0.5) normalized_value_of_building   
-//	     using im.mca.owa(interpolate_weights = false);
+
 	    
 /**
  *  Resolver for Ordered Weighted Averages (OWA) of multiple observations. OWAs are used in multi-criteria analysis
