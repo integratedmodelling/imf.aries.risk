@@ -1,0 +1,121 @@
+namespace aries.risk.data
+using aries.risk.concepts
+;
+
+/* METADATA of IMF DATA 
+ * #+++++++++++++++++++++++++++++++++++++
+II. H3 Aggregated data:
+H3 resolution= 7
+#+++++++++++++++++++++++++++++++++++++
++ h3Address  	= Grid cell H3 address
++ tNTLSqrM   	= Total estimated residential area within grid cell (Square Meters) (wrong var name--will fix it)
++ tNTL       	= Total NTL per grid cell
+--> tPop       	= Total population per grid cell
++ tVLitPop   	= Total estimated residential property value per grid cell(LitPop Approach)
++ tVLog         = Total estimated residential property value per grid cell(logLit*logPop Approach)
++ mVSqrmLitPop  = Mean estimated residential property value square meter within grid cell(LitPop Approach)
++ mVSqrMLog     = Mean estimated residential property value square meter within grid cell(logLit*logPop Approach)
+--> mVLitPop      = Mean estimated residential property value within grid cell(LitPop Approach)
++ mVLog         = Mean estimated residential property value within grid cell(logLit*logPop Approach)
+--> mSqrm         = Mean estimated area of residential building within grid cell
++ mHeight       = Mean estimated height of residential building within grid cell
+
+%%%
++ sSqrM         = Grid cell share of estimated residential property area (percent) 
++ sPop          = Grid cell share of estimated population (percent) 
++ sVLitPop      = Grid cell share of estimated property value (percent, LitPop Approach) 
++ geometry      = Grid cell geometry
+ */
+ 
+ model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#tpop'
+ 	as count of demography:HumanIndividual; 
+ 
+ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'                
+ 	as mean_residential_property_value; 
+ 	
+ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'  
+ 	as mean_residential_area;  
+ 	
+model  monetary value of infrastructure:Building
+observing
+	mean_residential_property_value,
+	mean_residential_area
+set to [mean_residential_property_value * mean_residential_area];
+ 
+ model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mheight'  
+ 	as im:Mean im:Height of infrastructure:Building;   
+ 	 
+/*
+ * #+++++++++++++++++++++++++++++++++++++
+III. Admin3 Aggregated data by WARD
+#+++++++++++++++++++++++++++++++++++++
++ mSqrm         = Mean estimated area of residential building within admin3
++ mVSqrmLitPop  = Mean estimated residential property value square meter (LitPop Approach)
++ mVLitPop      = Mean estimated residential property value within admin3 (LitPop Approach)
++ mVlog         = Mean estimated residential property value within admin3 (logLit*logPop Approach)
++ tSqrM         = Total estimated residential area within admin3 (Square Meters)
++ tNTLSqrm      = Total NTL within admin3 
++ tVLitPop      = Total estimated residential property value per grid cell(LitPop Approach)
++ tVlog         = Total estimated residential property value per grid cell(logLit*logPop Approach)              
++ geometry      = Admin3 geometry
+ 
+ * 
+ */
+
+
+model each 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated'
+ as policy:Ward earth:Region; 
+ 
+number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#mvlog'    
+ as mean_residential_property_value_square_meter;  
+
+number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#msqrm'
+ as mean_area_of_residential_building;  
+ 
+//number 'local:stefano.balbi:imf.aries.risk:KEN_adm3_agg#tSqrM'
+// as residential_area_square_meter; 
+ 
+//model  value of infrastructure:Building//economic_exposure_of_residential_building behavior:Economic
+//observing
+//	mean_residential_property_value_square_meter,
+//	mean_area_of_residential_building 
+//set to [mean_residential_property_value_square_meter * mean_area_of_residential_building]; 
+
+
+
+/*Hazard */
+
+model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as aries.risk.concepts:LandSurfaceTemperature;   	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	

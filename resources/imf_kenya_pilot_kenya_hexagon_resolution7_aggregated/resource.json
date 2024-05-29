@@ -1,0 +1,143 @@
+{
+  "urn" : "local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated",
+  "version" : "0.0.1",
+  "adapterType" : "wfs",
+  "localPath" : "imf.aries.risk/resources/imf_kenya_pilot_kenya_hexagon_resolution7_aggregated",
+  "geometry" : "#s1(41627){bbox=[33.9114303588867 41.8991279602051 -4.69507169723511 4.63370943069458],proj=EPSG:4326}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "imf_kenya_pilot_kenya_hexagon_resolution7_aggregated",
+  "type" : "OBJECT",
+  "resourceTimestamp" : 1716989469798,
+  "metadata" : {
+    "im:keywords" : "features,kenya_hexagon_resolution7_aggregated",
+    "dc:title" : "kenya_hexagon_resolution7_aggregated"
+  },
+  "parameters" : {
+    "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/imf_kenya_pilot/wfs",
+    "wfsVersion" : "1.0.0",
+    "wfsIdentifier" : "imf_kenya_pilot:kenya_hexagon_resolution7_aggregated"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ {
+    "name" : "h3addrs",
+    "type" : "TEXT",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "tntlsqm",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "tntl",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "tpop",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "tvlitpp",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "tvlog",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "mvsqrlp",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "mvsqrml",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "mvlitpp",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "mvlog",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "msqrm",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "mheight",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "ssqrm",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "spop",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "svlitpp",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  } ],
+  "spatialExtent" : {
+    "east" : 41.8991279602051,
+    "west" : 33.9114303588867,
+    "north" : 4.63370943069458,
+    "south" : -4.69507169723511,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}

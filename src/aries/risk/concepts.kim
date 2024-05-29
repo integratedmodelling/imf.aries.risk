@@ -1,0 +1,83 @@
+namespace aries.risk.concepts;
+
+/*bad semantics to be thrown away */
+ 
+quantity ConceptualRisk;    
+quantity Risk;  
+quantity Hazard;
+quantity Exposure;
+quantity Vulnerability;
+
+/* test with dependencies and no model */
+model ConceptualRisk 
+	observing 
+	count of demography:HumanIndividual,          //dataset 
+	im:Mean im:Height of infrastructure:Building, //dataset
+	monetary value of infrastructure:Building;  
+
+
+/*new semantics by Semantic group */
+ /*
+ * VALUE
+ */
+
+//This is inspired by COVER: The Common Ontology of Value and Risk (https://github.com/unibz-core/value-and-risk-ontology)
+//We need to add PreferenceValue to im (derived from ODO) to express non monetary values
+
+
+abstract relationship ValueAttribution
+     ""
+     links im:Agent to im:Subject
+//     applies to ValueEntity
+;
+
+ //Add: non monetary value
+deniable attribute Valued; 
+//    marks ValueAttribution; //marks: denotes the presence of
+
+
+/*
+ *  risk ontology
+ */
+
+// Hazard as role: we cannot ascribe identities to roles, this is a limitation
+//role Hazard  
+//     requires identity im:IntentedPurpose
+//     ; 
+//some process confers Hazard 
+ 
+//role Exposure;
+
+//role Vulnerability;
+ 
+temperature LandSurfaceTemperature
+  is im:Temperature of earth:Location; //soil temp of UHI
+ //realm land
+  
+//quantity LandSurfaceTemperature
+//      is im:Indicator 
+//      describes LandSurfaceTemperature caused by im:Potential ImpactEvent;*/ 
+  
+event ExtremeHeatEvent;
+
+process UrbanHeating; 
+//         is Hazardous LandSurfaceTemperature of earth:Location within infrastructure:City;
+//confers Hazard to ExtremeHeatEvent, Exposure to (count of demography:HumanIndividual), Vulnerability to xxx;  
+            
+/*
+ * VULNERABILITY
+ */
+
+//model specific
+// when a model use in indicator as vulnerability we add named as vulnerability"
+
+
+      
+	
+
+
+
+
+
+
+ 	
