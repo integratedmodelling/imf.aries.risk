@@ -37,9 +37,6 @@ model aries.risk.concepts:Risk
 	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Exposure,
 	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Vulnerability   
 	     using im.mca.owa(interpolate_weights = false);
-// risk_profile = 0.5,
-// balanced_risk_prof = false
-// ratio_balance = 1
 
 
 	    
@@ -82,8 +79,15 @@ model aries.risk.concepts:Risk
  *  DISCLAIMER: NORMALIZATION OF THE OBSERVATIONS IS NOT DONE WITHIN THE RESOLVER. AS A CONSEQUENCE OBSERVABLES' DATA MUST BE
  *  NORMALIZED BEFORE CONTEXTUALIZATION.
  *  
- *  		   
- * 
  * 
  * */		      
  
+ /*MCA using the EVAMIX algorithm for concordance */
+
+ number mca_uhi_risk
+ observing 
+		@cost(value?=1) value of aries.risk.concepts:Hazard,
+	    @cost(value?=1) value of aries.risk.concepts:Exposure,
+	    @cost(value?=1) value of aries.risk.concepts:Vulnerability   
+	    using im.mca.concordance(levels = 10) 
+	    set to [1 - self ];
