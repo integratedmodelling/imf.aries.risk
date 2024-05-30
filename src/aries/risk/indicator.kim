@@ -91,3 +91,12 @@ model aries.risk.concepts:Risk
 	    @cost(value?=1) value of aries.risk.concepts:Vulnerability   
 	    using im.mca.concordance(levels = 10) 
 	    set to [1 - self ];
+	    
+@parameter(name=threshold, label = 'hotspot concordance threshold', default=0.7,
+	       description = 'Minimum concordance value (0-1) to be part of an hotspot')
+model each earth:Location with im:Relevant aries.risk.concepts:Risk
+	"hotspots are identified by clustering the total risk index whose value lies above a chosen threshold."
+	observing 
+	aries.risk.concepts:Risk named risk
+	using gis.points.cluster(select = [risk > risk.max/2]); 
+	    
