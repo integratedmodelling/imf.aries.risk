@@ -1,5 +1,5 @@
 namespace aries.risk.data
-using aries.risk.concepts
+using aries.risk.concepts 
 ;
 
 /* METADATA of IMF DATA 
@@ -85,7 +85,13 @@ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#msqr
 
 /*Hazard */
 
-model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as aries.risk.concepts:LandSurfaceTemperature;   	
+model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as aries.risk.concepts:LandSurfaceTemperature in Celsius;
+ 
+
+  
+
+
+  	
  	
  	
  	

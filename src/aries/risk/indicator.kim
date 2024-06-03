@@ -3,10 +3,23 @@ using aries.risk.concepts;
 
 /* R = f (H, E, V)  */
 
+//model value of aries.risk.concepts:Hazard 
+//   observing
+//   im:Normalized aries.risk.concepts:LandSurfaceTemperature named normalized_lst
+//   set to [normalized_lst];    
+
 model value of aries.risk.concepts:Hazard 
    observing
-   im:Normalized aries.risk.concepts:LandSurfaceTemperature named normalized_lst
-   set to [normalized_lst];    
+   aries.risk.concepts:LandSurfaceTemperature  in Celsius named lst
+       lookup (lst, ?) into 
+	    lst             |	hazard   
+---------------------------------------------------------------------
+		< 20            |    0,           
+		20 to 25        |    0.2,      
+        25 to 30        |    0.4,       
+		30 to 35        |    0.6,           
+		35 to 40        |    0.8,      
+        > 40            |    1 ; 
 
 model value of aries.risk.concepts:Exposure     
 	observing 
