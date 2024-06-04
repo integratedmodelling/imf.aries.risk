@@ -1,6 +1,4 @@
-namespace aries.risk.data
-using aries.risk.concepts 
-;
+namespace aries.risk.data;
 
 /* METADATA of IMF DATA 
  * #+++++++++++++++++++++++++++++++++++++
@@ -27,13 +25,13 @@ H3 resolution= 7
 + geometry      = Grid cell geometry
  */
  
- model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#tpop'
+project private model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#tpop'
  	as count of demography:HumanIndividual; 
  
- number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'                
+number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'                
  	as mean_residential_property_value; 
  	
- number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'  
+number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'  
  	as mean_residential_area;  
  	
 model  monetary value of infrastructure:Building
@@ -42,7 +40,7 @@ observing
 	mean_residential_area
 set to [mean_residential_property_value * mean_residential_area];
  
- model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mheight'  
+project private model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mheight'  
  	as im:Mean im:Height of infrastructure:Building;   
  	 
 /*
@@ -57,11 +55,8 @@ III. Admin3 Aggregated data by WARD
 + tNTLSqrm      = Total NTL within admin3 
 + tVLitPop      = Total estimated residential property value per grid cell(LitPop Approach)
 + tVlog         = Total estimated residential property value per grid cell(logLit*logPop Approach)              
-+ geometry      = Admin3 geometry
- 
- * 
- */
-
++ geometry      = Admin3 geometry* 
+*/
 
 model each 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated'
  as policy:Ward earth:Region; 
@@ -71,57 +66,7 @@ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#mvlo
 
 number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#msqrm'
  as mean_area_of_residential_building;  
- 
-//number 'local:stefano.balbi:imf.aries.risk:KEN_adm3_agg#tSqrM'
-// as residential_area_square_meter; 
- 
-//model  value of infrastructure:Building//economic_exposure_of_residential_building behavior:Economic
-//observing
-//	mean_residential_property_value_square_meter,
-//	mean_area_of_residential_building 
-//set to [mean_residential_property_value_square_meter * mean_area_of_residential_building]; 
-
-
-
 /*Hazard */
 
-model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as aries.risk.concepts:LandSurfaceTemperature in Celsius;
- 
-
-  
-
-
-  	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
+model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as 
+	landcover:LandSurface earth:AtmosphericTemperature in Celsius;

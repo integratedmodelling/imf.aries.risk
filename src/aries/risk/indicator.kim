@@ -1,16 +1,7 @@
-namespace aries.risk.indicator
-using aries.risk.concepts;
+namespace aries.risk.indicator;
 
-/* R = f (H, E, V)  */
-
-//model value of aries.risk.concepts:Hazard 
-//   observing
-//   im:Normalized aries.risk.concepts:LandSurfaceTemperature named normalized_lst
-//   set to [normalized_lst];    
-
-model value of aries.risk.concepts:Hazard 
-   observing
-   aries.risk.concepts:LandSurfaceTemperature  in Celsius named lst
+project private model es.risk:HeatHazardMetric
+   observing landcover:LandSurface earth:AtmosphericTemperature  in Celsius named lst
        lookup (lst, ?) into 
 	    lst             |	hazard   
 ---------------------------------------------------------------------
@@ -21,95 +12,45 @@ model value of aries.risk.concepts:Hazard
 		35 to 40        |    0.8,      
         > 40            |    1 ; 
 
-model value of aries.risk.concepts:Exposure     
-	observing 
+model es.risk:HeatExposureMetric     
+  observing 
 	im:Normalized count of demography:HumanIndividual named normalized_population
 	set to [normalized_population];
 
-//model value of aries.risk.concepts:Vulnerability  
-//	observing 
-//    im:Normalized monetary value of infrastructure:Building named normalized_value_of_building
-//    set to [1 - normalized_value_of_building];     
-
-model value of aries.risk.concepts:Vulnerability  
-	observing 
+model es.risk:HeatVulnerabilityMetric 
+  observing 
     im:Normalized (im:Mean im:Height of infrastructure:Building) named normalized_height_of_building
     set to [normalized_height_of_building]; 
     
-  	   
-/* Using Ordered Weighted Averages (OWA) to create a composite risk indicator
- * (OWA resolver only takes value of or numbers as input)
+/*
+ * Ordered Weighted Averages (OWA)-based composite risk indicator
  */
-  
 @parameter(label = 'Risk aversion', default=0.5, name = risk_profile)
 @parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
 @parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
-model aries.risk.concepts:Risk  
-	    observing 
-	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Hazard,
-	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Exposure,
-	    	@criterion(relweight ?= 1) value of aries.risk.concepts:Vulnerability   
-	     using im.mca.owa(interpolate_weights = false);
-
-
+project private model es.risk:HeatRiskMetric  
+	observing 
+	    @criterion(relweight ?= 1) es.risk:HeatHazardMetric,
+	    @criterion(relweight ?= 1) es.risk:HeatExposureMetric,
+	    @criterion(relweight ?= 1) es.risk:HeatVulnerabilityMetric   
+    using im.mca.owa(interpolate_weights = false);
 	    
-/**
- *  Resolver for Ordered Weighted Averages (OWA) of multiple observations. OWAs are used in multi-criteria analysis
- *  to guide decision making in spatially distributed contexts by associating a degree of importance, risk or 
- *  vulnerability to each location in a certain scope based on the relative relevance of a set of observables and the
- *  risk profile of the decision-maker. Thus an OWA is commonly parameterized by a set of relevance weights, that 
- *  represent the relative importance of each observable, and a set of ordinal weights, that represents the risk profile
- *  of the decision.maker. OWAs can be calculated using slightly different methods, this resolver supports three: 
- *  
- *  1- Classic OWA: The calculation requires a set of ordinal weights and relevance weights. The latter are 
- *  		associated with each observation. In each location of the scope, observables are ordered based on the
- *  		value of the observation multiplied by the corresponding relevance weight, and in decreasing order. 
- *  		The result of that multiplication for each observable is again multiplied by the ordinal weights in an
- *  		ordered manner. The resulting number is the final weight and the sum of those weights in each location 
- *  		of the scope is the OWA in that location.   
- *  
- *  2- WOWA with linguistic quantifier: WOWA stands for Weighted Ordered Weighted Average. The calculation requires
- *  		a set of relevance weights and a parameter Alpha (real number) representing the risk profile. Ordinal 
- *  		weights are represented by the function F(x) = x ^ Alpha. The final weights are determined by evaluating 
- *  		F(x) at {x_i} i in [1, nObservables] where x_i is the value of the cumulative sum of the relevance weights
- *  		ordered with respect to the value of the corresponding observables at the pixel. The final weights'
- *  		expression is W_i = x_i ^ Alpha - x_(i-1) ^ Alpha for i in [1, nObservables]. The method has the practical 
- *  		advantage of being more user-friendly by describing the risk profile with a single parameter. 
- *  
- *  3- WOWA with interpolated weights: The calculation requires a set of ordinal weights and relevance weights. Final
- *  		weights are determined like in method 2. However instead of evaluating a predefined and simple "risk" function,
- *  		a more complex and expressive function is determined from the full set of ordinal weights. The function is built
- *  		by interpolating the cumulative sum of the ordinal weights using a piece-wise second-order Bernstein polynomial.
- *  		This method gives most control and robustness than method 2 at the expense of being slightly harder to 
- *  		parameterize.    
- * 
- * Notes: 
- * 
- * 	All methods use normalized weights and weight normalization is done within the resolver, leaving the user the freedom to 
- * 	define the weights as preferred. 
- * 
- *  All methods require normalized and non-dimensional observations as inputs in order to produce meaningful results. 
- *  DISCLAIMER: NORMALIZATION OF THE OBSERVATIONS IS NOT DONE WITHIN THE RESOLVER. AS A CONSEQUENCE OBSERVABLES' DATA MUST BE
- *  NORMALIZED BEFORE CONTEXTUALIZATION.
- *  
- * 
- * */		      
- 
- /*MCA using the EVAMIX algorithm for concordance */
-
+ /*
+  * MCA using the EVAMIX algorithm for spatially-explicit concordance metrics with
+  * stakeholder prioritization
+  */
  number mca_uhi_risk
- observing 
-		@cost(value?=1) value of aries.risk.concepts:Hazard,
-	    @cost(value?=1) value of aries.risk.concepts:Exposure,
-	    @cost(value?=1) value of aries.risk.concepts:Vulnerability   
-	    using im.mca.concordance(levels = 10) 
-	    set to [1 - self ];
+  observing 
+ 	  @cost(value?=1) es.risk:HeatHazardMetric,
+	  @cost(value?=1) es.risk:HeatExposureMetric,
+	  @cost(value?=1) es.risk:HeatVulnerabilityMetric   
+  using im.mca.concordance(levels = 10) 
+  set to [1 - self ];
 	    
 @parameter(label = 'Risk threshold', default=0.5, name = risk_threshold)
-model each earth:Location with im:Relevant aries.risk.concepts:Risk
-	"hotspots are identified by clustering the total risk index whose value lies above a chosen threshold."
-	observing 
-	aries.risk.concepts:Risk named risk
-	using gis.points.cluster(select = [ risk > risk.max*3/5]);
+project private model each earth:Location with im:Relevant es.risk:HeatRiskMetric
+	"Hotspots are identified by clustering the total risk index whose value lies above a chosen threshold."
+	observing es.risk:HeatRiskMetric named risk
+	using     gis.points.cluster(select = [ risk > risk.max*3/5]);
 
 	    
