@@ -1,8 +1,51 @@
 private namespace aries.risk.flood.coastal;
+	
 
-//model each 'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_nosub_hist_rp0005_0' as 
-//	as im:Height of earth:WaterBody in m;       
+event FloodEvent 
+	is im:PeriodExpiration with im:High hydrology:FloodWaterVolume 
+		within earth:Location;
 
-number 'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_nosub_hist_rp0005_0'
-	as trial;
+quantity FloodVulnerabilityMetric
+	describes risk:VulnerabilityMetric probability of im:Collapse of demography:SocialGroup
+		caused by FloodEvent
+    decreases with im:Height of infrastructure:Building;
+	
+quantity FloodExposureMetric
+	describes risk:ExposureMetric probability of im:Collapse of demography:SocialGroup 
+		caused by FloodEvent
+    increases with count of demography:HumanIndividual;
+	
+quality FloodRiskMetric
+	is risk:RiskMetric probability of im:Collapse of demography:SocialGroup
+		caused by FloodEvent;
 
+quality FloodHazardMetric
+	is risk:HazardMetric hydrology:FloodWaterVolume during FloodEvent;
+
+configuration FloodRisk is risk:Risk
+	emerges from FloodEvent
+	implies FloodVulnerabilityMetric for risk:VulnerabilityMetric,
+			FloodExposureMetric for risk:ExposureMetric,
+			FloodHazardMetric for risk:HazardMetric,
+			FloodRiskMetric for risk:RiskMetric;	
+	
+model local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_nosub_2030_rp0005_0
+as hydrology:FloodWaterVolume named flood_depth;	
+
+private model aries.risk.flood.coastal:FloodHazardMetric
+	observing 
+		hydrology:FloodWaterVolume named flood_depth
+	lookup (flood_depth, ?) into 
+	    flood_depth   |	hazard   
+---------------------------------------------------------------------
+		<= 0          |    0,           
+		0 to 1        |    0.2,      
+        1 to 2        |    0.4,       
+		2 to 3        |    0.6,           
+		3 to 4        |    0.8,      
+        > 4           |    1 ; 
+
+model aries.risk.flood.coastal:FloodExposureMetric     
+	observing 
+		im:Normalized count of demography:HumanIndividual named normalized_population
+	set to [normalized_population];
