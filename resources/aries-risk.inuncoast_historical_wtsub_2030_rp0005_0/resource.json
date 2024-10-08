@@ -1,0 +1,37 @@
+{
+  "urn" : "local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2030_rp0005_0",
+  "version" : "0.0.1",
+  "adapterType" : "wcs",
+  "localPath" : "imf.aries.risk/resources/aries-risk.inuncoast_historical_wtsub_2030_rp0005_0",
+  "geometry" : "S2(43199,21599){bbox=[-180.0 180.0 -90.0 90.0],proj=EPSG:4326}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "aries-risk.inuncoast_historical_wtsub_2030_rp0005_0",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1728372908472,
+  "metadata" : { },
+  "parameters" : {
+    "wcsIdentifier" : "aries-risk__inuncoast_historical_wtsub_2030_rp0005_0",
+    "transform" : "",
+    "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/aries-risk/wcs",
+    "nodata" : "-9999.0",
+    "wcsVersion" : "2.0.1"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : {
+    "east" : 180.0,
+    "west" : -180.0,
+    "north" : 90.0,
+    "south" : -90.0,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}

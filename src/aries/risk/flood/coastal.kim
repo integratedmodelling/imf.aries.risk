@@ -1,4 +1,8 @@
 private namespace aries.risk.flood.coastal;
 
+//model each 'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_nosub_hist_rp0005_0' as 
+//	as im:Height of earth:WaterBody in m;       
 
+number 'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_nosub_hist_rp0005_0'
+	as trial;
 
