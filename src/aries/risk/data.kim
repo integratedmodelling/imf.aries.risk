@@ -79,6 +79,7 @@ model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as
 	landcover:LandSurface earth:AtmosphericTemperature in Celsius;
 	
 model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_hist_rp0005_0',
-		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2030_rp0005_0'
+		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2030_rp0005_0',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2050_rp0005_0'
 	as aries.risk.flood.coastal:FloodWaterDepth;	
 
