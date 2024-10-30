@@ -1,4 +1,5 @@
-namespace aries.risk.data;
+namespace aries.risk.data
+	using aries.risk.flood.coastal;
 
 /* METADATA of IMF DATA 
  * #+++++++++++++++++++++++++++++++++++++
@@ -66,7 +67,9 @@ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#mvlo
 
 number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#msqrm'
  as mean_area_of_residential_building;  
-/*Hazard */
 
-model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as 
-	landcover:LandSurface earth:AtmosphericTemperature in Celsius;
+
+/*Hazard */
+model local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_nosub_2030_rp0005_0
+	as aries.risk.flood.coastal:FloodWaterDepth named flood_depth;	
+
