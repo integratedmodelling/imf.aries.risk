@@ -69,7 +69,16 @@ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#msqr
  as mean_area_of_residential_building;  
 
 
-/*Hazard */
-model local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_nosub_2030_rp0005_0
-	as aries.risk.flood.coastal:FloodWaterDepth named flood_depth;	
+/*
+ * HAZARD
+ * Land surface temperature (LST) for heat
+ * flood water depth for coastal flood
+ */
+
+model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as 
+	landcover:LandSurface earth:AtmosphericTemperature in Celsius;
+	
+model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_hist_rp0005_0',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2030_rp0005_0'
+	as aries.risk.flood.coastal:FloodWaterDepth;	
 
