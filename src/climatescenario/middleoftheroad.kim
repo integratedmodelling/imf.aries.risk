@@ -1,0 +1,26 @@
+scenario climatescenario.middleoftheroad
+	disjoint with climatescenario.highemissions
+	using aries.risk.flood.coastal;
+/*
+ * The climate scenario MIDDLE OF THE ROAD includes
+ * 		* Representative Concentration Pathway(RCP) 4.5
+ * 			considered the intermediate scenario, 
+ * 			with emissions peaking around 2040 and then declining
+ * 		* Shared Socioeconomic Pathway(SSP) 2
+ * 			a.k.a. "Middle of the road"
+ * 			with social, economic and technological trends not shifting markedly 
+ * 			from historical patterns
+ */	
+
+ /*
+ * HAZARD
+ * flood depth for future years 2030 and 2050
+ */
+model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_wtsub_2030_rp0005_0',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_wtsub_2050_rp0005_0'
+	as aries.risk.flood.coastal:FloodWaterDepth;	
+ 
+/*
+ * VULNERABILITY
+ * GDP for future years
+ */ 

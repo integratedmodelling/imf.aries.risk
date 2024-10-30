@@ -1,0 +1,28 @@
+scenario climatescenario.highemissions
+	disjoint with climatescenario.middleoftheroad
+	using aries.risk.flood.coastal;
+/*
+ * The climate scenario HIGH EMISSION includes
+ * 		* Representative Concentration Pathway(RCP) 8.5
+ * 			considered the worst-case climate change scenario, 
+ * 			with emissions continuosly rising throughout the 21st century
+ * 		* Shared Socioeconomic Pathway(SSP) 5
+ * 			a.k.a. "Taking the Highway"
+ * 			with social, economic and technological growth.
+ * 			Population peaks and declines in the 21st century
+ */	
+ 
+/*
+ * HAZARD
+ * flood depth for future years 2030 and 2050
+ */
+model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp8p5_wtsub_2030_rp0005_0',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp8p5_wtsub_2050_rp0005_0'
+	as aries.risk.flood.coastal:FloodWaterDepth;	
+ 
+/*
+ * VULNERABILITY
+ * GDP for future years
+ */ 
+
+
