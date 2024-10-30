@@ -33,7 +33,7 @@ configuration FloodRisk is risk:Risk
 	
 private model aries.risk.flood.coastal:FloodHazardMetric
 	observing 
-		hydrology:FloodWaterVolume named flood_depth
+		FloodWaterDepth named flood_depth
 	lookup (flood_depth, ?) into 
 	    flood_depth   |	hazard   
 ---------------------------------------------------------------------
