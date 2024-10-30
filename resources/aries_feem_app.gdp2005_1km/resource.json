@@ -1,0 +1,36 @@
+{
+  "urn" : "local:caterina.gilli:imf.aries.risk:aries_feem_app.gdp2005_1km",
+  "version" : "0.0.1",
+  "adapterType" : "wcs",
+  "localPath" : "imf.aries.risk/resources/aries_feem_app.gdp2005_1km",
+  "geometry" : "S2(43199,17999){bbox=[-180.0 180.0 -60.0 90.0],proj=EPSG:4326}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "aries_feem_app.gdp2005_1km",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1730294839304,
+  "metadata" : { },
+  "parameters" : {
+    "wcsIdentifier" : "aries_feem_app__gdp2005_1km",
+    "transform" : "",
+    "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/aries_feem_app/wcs",
+    "wcsVersion" : "2.0.1"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : {
+    "east" : 180.0,
+    "west" : -180.0,
+    "north" : 90.0,
+    "south" : -60.0,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}

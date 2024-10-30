@@ -48,3 +48,8 @@ model aries.risk.flood.coastal:FloodExposureMetric
 	observing 
 		im:Normalized count of demography:HumanIndividual named normalized_population
 	set to [normalized_population];
+	
+model aries.risk.flood.coastal:FloodVulnerabilityMetric     
+	observing 
+		im:Gross economics:DomesticProduct
+	set to [self];

@@ -1,4 +1,5 @@
 scenario climatescenario.middleoftheroad
+	"To use RCP4.5 and SSP5 data for Flood Depth and GDP"
 	disjoint with climatescenario.highemissions
 	using aries.risk.flood.coastal;
 /*
@@ -24,3 +25,6 @@ model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_wtsub_20
  * VULNERABILITY
  * GDP for future years
  */ 
+ model 'local:caterina.gilli:imf.aries.risk:aries_feem_app.gdp2100_ssp2'
+    as im:Gross economics:DomesticProduct in USD@2013/km^2 
+    set to [self * 1.035]; // per km^2; //an approximation of 30 arc-seconds

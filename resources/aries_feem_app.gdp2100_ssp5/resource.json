@@ -1,0 +1,47 @@
+{
+  "urn" : "local:caterina.gilli:imf.aries.risk:aries_feem_app.gdp2100_ssp5",
+  "version" : "0.0.1",
+  "adapterType" : "wcs",
+  "localPath" : "imf.aries.risk/resources/aries_feem_app.gdp2100_ssp5",
+  "geometry" : "τ1{tend=4133980800000,tstart=4102444800000,ttype=logical}S2(43199,17999){bbox=[-180.0 180.0 -60.0 90.0],proj=EPSG:4326}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "aries_feem_app.gdp2100_ssp5",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1730294905332,
+  "metadata" : {
+    "im:keywords" : "",
+    "dc:comment" : "",
+    "im:notes" : "",
+    "dc:title" : "",
+    "dc:url" : "",
+    "dc:creator" : "",
+    "im:thematic-area" : "",
+    "dc:originator" : "",
+    "im:geographic-area" : "",
+    "dc:source" : ""
+  },
+  "parameters" : {
+    "wcsIdentifier" : "aries_feem_app__gdp2100_ssp5",
+    "transform" : "",
+    "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/aries_feem_app/wcs",
+    "wcsVersion" : "2.0.1"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : {
+    "east" : 180.0,
+    "west" : -180.0,
+    "north" : 90.0,
+    "south" : -60.0,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}
