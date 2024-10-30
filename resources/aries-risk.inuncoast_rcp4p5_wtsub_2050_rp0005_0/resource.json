@@ -1,13 +1,13 @@
 {
-  "urn" : "local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_hist_rp0005_0",
+  "urn" : "local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_wtsub_2050_rp0005_0",
   "version" : "0.0.1",
   "adapterType" : "wcs",
-  "localPath" : "imf.aries.risk/resources/aries-risk.inuncoast_historical_wtsub_hist_rp0005_0",
-  "geometry" : "t1{tend=1293840000000,tstart=1262304000000,ttype=physical}S2(43199,21599){bbox=[-180.0 180.0 -90.0 90.0],proj=EPSG:4326}",
+  "localPath" : "imf.aries.risk/resources/aries-risk.inuncoast_rcp4p5_wtsub_2050_rp0005_0",
+  "geometry" : "τ1{tend=2556144000000,tstart=2524608000000,ttype=logical}S2(43199,21599){bbox=[-180.0 180.0 -90.0 90.0],proj=EPSG:4326}",
   "projectName" : "imf.aries.risk",
-  "localName" : "aries-risk.inuncoast_historical_wtsub_hist_rp0005_0",
+  "localName" : "aries-risk.inuncoast_rcp4p5_wtsub_2050_rp0005_0",
   "type" : "NUMBER",
-  "resourceTimestamp" : 1730282923171,
+  "resourceTimestamp" : 1730285532199,
   "metadata" : {
     "im:keywords" : "",
     "dc:comment" : "",
@@ -21,7 +21,7 @@
     "dc:source" : ""
   },
   "parameters" : {
-    "wcsIdentifier" : "aries-risk__inuncoast_historical_wtsub_hist_rp0005_0",
+    "wcsIdentifier" : "aries-risk__inuncoast_rcp4p5_wtsub_2050_rp0005_0",
     "transform" : "",
     "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/aries-risk/wcs",
     "nodata" : "-9999.0",
