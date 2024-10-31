@@ -26,8 +26,10 @@ H3 resolution= 7
 + geometry      = Grid cell geometry
  */
  
-project private model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#tpop'
- 	as count of demography:HumanIndividual; 
+//project private model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#tpop'
+// 	as count of demography:HumanIndividual; 
+model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2000'
+	as count of demography:HumanIndividual;
  
 number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'                
  	as mean_residential_property_value; 

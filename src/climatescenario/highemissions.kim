@@ -21,10 +21,18 @@ scenario climatescenario.highemissions
 model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp8p5_wtsub_2030_rp0005_0',
 		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp8p5_wtsub_2050_rp0005_0'
 	as aries.risk.flood.coastal:FloodWaterDepth;	
+
+/*
+ * EXPOSURE
+ * population for future years 2050 and 2100
+ */
+model 	'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2050_ssp5',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2100_ssp5'
+	as count of demography:HumanIndividual; 
  
 /*
  * VULNERABILITY
- * GDP for future years
+ * GDP for future years 2100
  */ 
 model 'local:caterina.gilli:imf.aries.risk:aries_feem_app.gdp2100_ssp5'
     as im:Gross economics:DomesticProduct in USD@2013/km^2 
