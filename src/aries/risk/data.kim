@@ -85,3 +85,10 @@ model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsu
 		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2050_rp0005_0'
 	as aries.risk.flood.coastal:FloodWaterDepth;	
 
+/*
+ * VULNERABILITY
+ * GDP
+ */ 
+model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2010',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2020'
+    as im:Gross economics:DomesticProduct in USD@2005;

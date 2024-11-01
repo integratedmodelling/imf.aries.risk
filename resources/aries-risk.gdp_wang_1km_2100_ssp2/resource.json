@@ -1,0 +1,47 @@
+{
+  "urn" : "local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2100_ssp2",
+  "version" : "0.0.1",
+  "adapterType" : "wcs",
+  "localPath" : "imf.aries.risk/resources/aries-risk.gdp_wang_1km_2100_ssp2",
+  "geometry" : "τ1{tend=4133980800000,tstart=4102444800000,ttype=logical}S2(43199,21599){bbox=[-180.0 180.0 -90.0 90.0],proj=EPSG:4326}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "aries-risk.gdp_wang_1km_2100_ssp2",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1730458408121,
+  "metadata" : {
+    "im:keywords" : "",
+    "dc:comment" : "",
+    "im:notes" : "",
+    "dc:title" : "",
+    "dc:url" : "",
+    "dc:creator" : "",
+    "im:thematic-area" : "",
+    "dc:originator" : "",
+    "im:geographic-area" : "",
+    "dc:source" : ""
+  },
+  "parameters" : {
+    "wcsIdentifier" : "aries-risk__gdp_wang_1km_2100_ssp2",
+    "transform" : "",
+    "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/aries-risk/wcs",
+    "wcsVersion" : "2.0.1"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : {
+    "east" : 180.0,
+    "west" : -180.0,
+    "north" : 90.0,
+    "south" : -90.0,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}
