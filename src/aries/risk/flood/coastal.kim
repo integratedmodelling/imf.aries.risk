@@ -1,4 +1,5 @@
 private namespace aries.risk.flood.coastal;
+	
 
 length FloodWaterDepth 
  	is IUPAC:Water im:Depth within earth:Location;
@@ -44,12 +45,81 @@ private model aries.risk.flood.coastal:FloodHazardMetric
 		3 to 4        |    0.8,      
         > 4           |    1 ; 
 
+
+
+
+//model aries.risk.flood.coastal:FloodExposureMetric     
+//	observing 
+//		im:Normalized count of demography:HumanIndividual named normalized_population
+//	set to [normalized_population];
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'    
+ as mean_residential_property_value_square_meter_pambane;  
+ 
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
+ as mean_area_of_residential_building_pambane;    
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    
+ as mean_residential_property_value_square_meter_beira; 
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
+ as mean_area_of_residential_building_beira; 
+
+
 model aries.risk.flood.coastal:FloodExposureMetric     
 	observing 
-		im:Normalized count of demography:HumanIndividual named normalized_population
-	set to [normalized_population];
+		im:Normalized count of demography:HumanIndividual named normalized_population,
+		mean_area_of_residential_building_pambane
+	set to [normalized_population * mean_area_of_residential_building_pambane]
+	, klab.data.normalize();
+            
 	
-model aries.risk.flood.coastal:FloodVulnerabilityMetric     
+//model aries.risk.flood.coastal:FloodVulnerabilityMetric     
+//	observing 
+//		im:Gross economics:DomesticProduct,
+//		
+//	set to [self];
+
+
+//model aries.risk.flood.coastal:FloodExposureMetric     
+//  observing 
+//	im:Normalized count of demography:HumanIndividual named normalized_population
+//	set to [normalized_population];
+
+model aries.risk.flood.coastal:FloodVulnerabilityMetric 
+  observing 
+    im:Normalized (im:Mean im:Height of infrastructure:Building) named normalized_height_of_building
+    set to [normalized_height_of_building]; 
+    
+/* 
+ * Ordered Weighted Averages (OWA)-based composite risk indicator
+ */
+@parameter(label = 'Risk aversion', default=0.5, name = risk_profile)
+@parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
+@parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
+model aries.risk.flood.coastal:FloodRiskMetric  
 	observing 
-		im:Gross economics:DomesticProduct
-	set to [self];
+	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodHazardMetric,
+	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodExposureMetric,
+	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodVulnerabilityMetric   
+    using im.mca.owa(interpolate_weights = false);
+	    
+ /*
+  * MCA using the EVAMIX algorithm for spatially-explicit concordance metrics with
+  * stakeholder prioritization
+  */
+ number mca_uhi_risk
+  observing 
+ 	  @cost(value?=1) aries.risk.flood.coastal:FloodHazardMetric,
+	  @cost(value?=1) aries.risk.flood.coastal:FloodExposureMetric,
+	  @cost(value?=1) aries.risk.flood.coastal:FloodVulnerabilityMetric   
+  using im.mca.concordance(levels = 10) 
+  set to [1 - self ];
+	    
+@parameter(label = 'Risk threshold', default=0.5, name = risk_threshold)
+model each earth:Location with im:Relevant FloodRiskMetric
+	"Hotspots are identified by clustering the total risk index whose value lies above a chosen threshold."
+	observing es.risk:HeatRiskMetric named risk
+	using     gis.points.cluster(select = [ risk > risk.max*3/5]);	
+	
+	
