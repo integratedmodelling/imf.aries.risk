@@ -1,0 +1,115 @@
+{
+  "urn" : "local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10",
+  "version" : "0.0.1",
+  "adapterType" : "wfs",
+  "localPath" : "imf.aries.risk/resources/imf_pambane_mozambique_aggh3_resolution10",
+  "geometry" : "#s2(8963){bbox=[35.8355380260428 36.5932786736865 -18.9053999730506 -18.2537040983178],proj=EPSG:4326}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "imf_pambane_mozambique_aggh3_resolution10",
+  "type" : "OBJECT",
+  "resourceTimestamp" : 1730716645473,
+  "metadata" : {
+    "im:keywords" : "features,pambane_mozambique_aggh3_resolution10",
+    "dc:title" : "pambane_mozambique_aggh3_resolution10"
+  },
+  "parameters" : {
+    "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/imf/ows",
+    "wfsVersion" : "1.0.0",
+    "wfsIdentifier" : "imf:pambane_mozambique_aggh3_resolution10"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ {
+    "name" : "index",
+    "type" : "TEXT",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "numpoints",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "height_impute",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "est_sqr_m",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "est_floor",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "building_value",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "sum_b_value",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "max_b_value",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "min_b_value",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "max_h_impute",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  }, {
+    "name" : "min_h_impute",
+    "type" : "NUMBER",
+    "key" : false,
+    "optional" : true,
+    "exampleValue" : null,
+    "index" : 0
+  } ],
+  "spatialExtent" : {
+    "east" : 36.5932786736865,
+    "west" : 35.8355380260428,
+    "north" : -18.2537040983178,
+    "south" : -18.9053999730506,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}
