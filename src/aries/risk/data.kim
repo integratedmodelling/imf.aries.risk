@@ -26,10 +26,8 @@ H3 resolution= 7
 + geometry      = Grid cell geometry
  */
  
-//project private model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#tpop'
-// 	as count of demography:HumanIndividual; 
-model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2000'
-	as count of demography:HumanIndividual;
+project private model 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#tpop'
+ 	as count of demography:HumanIndividual; 
  
 number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_hexagon_resolution7_aggregated#mvlitpp'                
  	as mean_residential_property_value; 
@@ -73,40 +71,8 @@ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#msqr
 
 /*
  * HAZARD
- * Land surface temperature (LST) for heat
- * flood water depth for coastal flood (hist is 2010)
+ * Land surface temperature (LST)
  */
 
 model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as 
 	landcover:LandSurface earth:AtmosphericTemperature in Celsius;
-	
-model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_hist_rp0005_0',
-		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2030_rp0005_0',
-		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2050_rp0005_0'
-	as aries.risk.flood.coastal:FloodWaterDepth;	
-
-number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'    
- as mean_residential_property_value_square_meter_pambane;  
- 
-number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
- as mean_area_of_residential_building_pambane;    
-
-number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    
- as mean_residential_property_value_square_meter_beira; 
-
-number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
- as mean_area_of_residential_building_beira; 
-
-model  monetary value of infrastructure:Building
-observing
-	mean_residential_property_value,
-	mean_residential_area
-set to [mean_residential_property_value * mean_residential_area];
-
-/*
- * VULNERABILITY
- * GDP
- */ 
-model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2010',
-		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2020'
-    as im:Gross economics:DomesticProduct in USD@2005;

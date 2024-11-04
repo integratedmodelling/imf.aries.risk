@@ -1,0 +1,57 @@
+project private namespace aries.risk.flood.coastal.data
+	using aries.risk.flood.coastal;
+
+
+/*
+ * HAZARD
+ * flood water depth for coastal flood (hist is 2010)
+ */	
+model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_hist_rp0005_0',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2030_rp0005_0',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2050_rp0005_0'
+	as aries.risk.flood.coastal:FloodWaterDepth;	
+
+/*
+ * EXPOSURE
+ * total population (higher resolution for base year 2000)
+ */
+ 
+// 14km resolution:
+// model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2000'
+// downscaled to 1km
+project private model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_1km_2000'
+	as count of demography:HumanIndividual; 
+
+/*
+ * VULNERABILITY
+ * Gross Domestic Product (GDP)
+ */ 
+project private model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2010',
+						'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2020'
+    as im:Gross economics:DomesticProduct in USD@2005;
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'
+ as mean_residential_property_value_square_meter_pambane;  
+ 
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
+ as mean_area_of_residential_building_pambane;    
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#height_impute'
+ as mean_height_of_building_pambane; 
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    
+ as mean_residential_property_value_square_meter_beira; 
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
+ as mean_area_of_residential_building_beira; 
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#height_impute'
+ as mean_height_of_building_beira; 
+    
+model  monetary value of infrastructure:Building
+observing
+	mean_residential_property_value_square_meter_pambane,
+	mean_area_of_residential_building_pambane	
+set to [mean_residential_property_value_square_meter_pambane * 
+		mean_area_of_residential_building_pambane
+	   ];
