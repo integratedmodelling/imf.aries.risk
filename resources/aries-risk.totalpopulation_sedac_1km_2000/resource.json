@@ -1,0 +1,48 @@
+{
+  "urn" : "local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_1km_2000",
+  "version" : "0.0.1",
+  "adapterType" : "wcs",
+  "localPath" : "imf.aries.risk/resources/aries-risk.totalpopulation_sedac_1km_2000",
+  "geometry" : "τ1{tend=978307200000,tstart=946684800000,ttype=logical}S2(43199,16729){bbox=[-180.0 179.99999999856004 -55.77500000000887 83.64166666610012],proj=EPSG:4326}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "aries-risk.totalpopulation_sedac_1km_2000",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1730731762697,
+  "metadata" : {
+    "im:keywords" : "",
+    "dc:comment" : "",
+    "im:notes" : "",
+    "dc:title" : "",
+    "dc:url" : "",
+    "dc:creator" : "",
+    "im:thematic-area" : "",
+    "dc:originator" : "",
+    "im:geographic-area" : "",
+    "dc:source" : ""
+  },
+  "parameters" : {
+    "wcsIdentifier" : "aries-risk__totalpopulation_sedac_1km_2000",
+    "transform" : "",
+    "serviceUrl" : "https://integratedmodelling.org/aux-geoserver/aries-risk/wcs",
+    "nodata" : "-3.4028230607370965E38",
+    "wcsVersion" : "2.0.1"
+  },
+  "localPaths" : [ ],
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : {
+    "east" : 179.99999999856004,
+    "west" : -180.0,
+    "north" : 83.64166666610012,
+    "south" : -55.77500000000887,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : { }
+}
