@@ -85,6 +85,24 @@ model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsu
 		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2050_rp0005_0'
 	as aries.risk.flood.coastal:FloodWaterDepth;	
 
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'    
+ as mean_residential_property_value_square_meter_pambane;  
+ 
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
+ as mean_area_of_residential_building_pambane;    
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    
+ as mean_residential_property_value_square_meter_beira; 
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
+ as mean_area_of_residential_building_beira; 
+
+model  monetary value of infrastructure:Building
+observing
+	mean_residential_property_value,
+	mean_residential_area
+set to [mean_residential_property_value * mean_residential_area];
+
 /*
  * VULNERABILITY
  * GDP

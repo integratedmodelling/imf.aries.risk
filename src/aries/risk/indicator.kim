@@ -22,7 +22,7 @@ model es.risk:HeatVulnerabilityMetric
     im:Normalized (im:Mean im:Height of infrastructure:Building) named normalized_height_of_building
     set to [normalized_height_of_building]; 
     
-/*
+/* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
  */
 @parameter(label = 'Risk aversion', default=0.5, name = risk_profile)
