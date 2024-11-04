@@ -74,7 +74,7 @@ number 'local:rubencc:aries.uhi:imf_kenya_pilot_kenya_adm_level3_aggregated#msqr
 /*
  * HAZARD
  * Land surface temperature (LST) for heat
- * flood water depth for coastal flood
+ * flood water depth for coastal flood (hist is 2010)
  */
 
 model local:stefano.balbi:imf.aries.risk:imf_kenya_pilot.lst_2018_2023_kenya as 
