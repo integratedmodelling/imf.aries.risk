@@ -1,6 +1,26 @@
 private namespace aries.risk.flood.coastal.indicator
 	using aries.risk.flood.coastal;
 
+model 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'
+// as im:Mean value of landcover:Urban im:Area over 
+// space(shape = "EPSG:4326 POLYGON ((36.609743382273294 -18.6473294923415, 36.602713736714826 -18.714942436191393, 36.58189494537598 -18.77993157196981, 36.548087062732584 -18.839803717338327, 36.50258930675494 -18.892264544266695, 36.447150130689856 -18.935305756769935, 36.38390003098284 -18.967281082494083, 36.31526967349458 -18.986968340822443, 36.24389648437501 -18.993615388960606, 36.172523295255424 -18.986968340822443, 36.10389293776717 -18.967281082494083, 36.04064283806016 -18.935305756769935, 35.985203661995065 -18.892264544266695, 35.93970590601742 -18.839803717338327, 35.90589802337403 -18.77993157196981, 35.88507923203518 -18.714942436191393, 35.87804958647672 -18.6473294923415, 35.88507923203518 -18.579689612777514, 35.90589802337403 -18.514623770742602, 35.93970590601742 -18.454636826811537, 35.985203661995065 -18.40204058645925, 36.04064283806016 -18.358863961304436, 36.10389293776717 -18.326773838882275, 36.172523295255424 -18.307009876161956, 36.24389648437501 -18.30033589308202, 36.31526967349458 -18.307009876161956, 36.38390003098284 -18.326773838882275, 36.447150130689856 -18.358863961304436, 36.50258930675494 -18.40204058645925, 36.548087062732584 -18.454636826811537, 36.58189494537598 -18.514623770742602, 36.602713736714826 -18.579689612777514, 36.609743382273294 -18.6473294923415))");
+ as mean_residential_property_value_square_meter_pambane;  
+ 
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
+ as mean_area_of_residential_building_pambane;    
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#height_impute'
+ as mean_height_of_building_pambane; 
+ 
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    	
+ as mean_residential_property_value_square_meter_beira; 
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
+ as mean_area_of_residential_building_beira; 
+
+number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#height_impute'
+ as mean_height_of_building_beira; 
+ 
 private model aries.risk.flood.coastal:FloodHazardMetric
 	observing 
 		aries.risk.flood.coastal:FloodWaterDepth named flood_depth
@@ -25,14 +45,14 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 	observing 
 		im:Gross economics:DomesticProduct named gdp,
 		mean_height_of_building_pambane
-	set to [gdp * mean_height_of_building_pambane]
+	set to [1-gdp * mean_height_of_building_pambane]
 	, klab.data.normalize();
 
     
 /* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
  */
-@parameter(label = 'Risk aversion', default=0.5, name = risk_profile)
+ 
 @parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
 @parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
 model aries.risk.flood.coastal:FloodRiskMetric  
@@ -81,16 +101,16 @@ model each earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMet
 //    set to [normalized_height_of_building]; 
 
 	
-model aries.risk.flood.coastal:FloodVulnerabilityMetric     
-	observing 
-		im:Gross economics:DomesticProduct named gdp,
-		mean_residential_property_value_square_meter_pambane,
-		mean_area_of_residential_building_pambane,
-		mean_height_of_building_pambane
-	set to [gdp * mean_residential_property_value_square_meter_pambane * 
-			mean_area_of_residential_building_pambane * 
-			mean_height_of_building_pambane]
-	, klab.data.normalize();
+//model aries.risk.flood.coastal:FloodVulnerabilityMetric     
+//	observing 
+//		im:Gross economics:DomesticProduct named gdp,
+//		mean_residential_property_value_square_meter_pambane,
+//		mean_area_of_residential_building_pambane,
+//		mean_height_of_building_pambane
+//	set to [gdp * mean_residential_property_value_square_meter_pambane * 
+//			mean_area_of_residential_building_pambane * 
+//			mean_height_of_building_pambane]
+//	, klab.data.normalize();
 
 //	set to [gdp * mean_height_of_building_pambane]
 //	, klab.data.normalize();

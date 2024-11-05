@@ -1,7 +1,8 @@
 project private namespace aries.risk.flood.coastal;
 	
 length FloodWaterDepth 
- 	is IUPAC:Water im:Depth within earth:Location;
+ 	is IUPAC:Water im:Depth
+ 	within earth:Location;
 
 event FloodEvent 
 	is im:PeriodExpiration with im:High FloodWaterDepth
