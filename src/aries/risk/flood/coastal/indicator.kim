@@ -65,6 +65,13 @@ model aries.risk.flood.coastal:FloodRiskMetric
 	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodExposureMetric,
 	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodVulnerabilityMetric   
     using im.mca.owa(interpolate_weights = false);
+    
+model aries.risk.flood.coastal:FloodRiskMetric named flood_risk_metric_by_hand
+	observing 
+	    aries.risk.flood.coastal:FloodHazardMetric named hazard,
+	    aries.risk.flood.coastal:FloodExposureMetric named exposure,
+	    aries.risk.flood.coastal:FloodVulnerabilityMetric named vulnerability  
+    set to [(hazard + exposure + vulnerability)/3];
 	    
  /*
   * MCA using the EVAMIX algorithm for spatially-explicit concordance metrics with
