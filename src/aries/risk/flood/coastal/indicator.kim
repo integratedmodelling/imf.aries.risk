@@ -52,11 +52,11 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 	  	  klab.data.normalize()	  	   
 	then [1 - self];
 
-    
+   
 /* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
  */
- 
+@parameter(label = 'Risk aversion', default=0.5, name = risk_profile) 
 @parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
 @parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
 model aries.risk.flood.coastal:FloodRiskMetric  
