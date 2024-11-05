@@ -52,7 +52,6 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 	  	  klab.data.normalize()	  	   
 	then [1 - self];
 
-	
     
 /* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
