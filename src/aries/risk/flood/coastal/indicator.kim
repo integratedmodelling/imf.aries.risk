@@ -45,25 +45,9 @@ private model aries.risk.flood.coastal:FloodHazardMetric
 		3 to 4        |    0.8,      
         > 4           |    1 ; 
 
-model aries.risk.flood.coastal:FloodExposureMetric     
-	observing 
-		im:Normalized count of demography:HumanIndividual named normalized_population,
-		mean_area_of_residential_building_maputo
-	set to [normalized_population * mean_area_of_residential_building_maputo]
-	, klab.data.normalize();
-	
-model aries.risk.flood.coastal:FloodVulnerabilityMetric     
-	observing 
-		im:Gross economics:DomesticProduct named gdp,
-		mean_height_of_building_maputo	
-	set to [
-			def vul = (mean_height_of_building_maputo == 0 ? unknown : gdp * mean_height_of_building_maputo) 
-			return vul
-		],
-	  	  klab.data.normalize()	  	   
-	then [1 - self];
-
-
+// ********************
+// ***** PAMBANE ******
+// ********************
 //model aries.risk.flood.coastal:FloodExposureMetric     
 //	observing 
 //		im:Normalized count of demography:HumanIndividual named normalized_population,
@@ -82,7 +66,9 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 //	  	  klab.data.normalize()	  	   
 //	then [1 - self];
 
-
+// ********************
+// ****** BEIRA *******
+// ********************
 //model aries.risk.flood.coastal:FloodExposureMetric     
 //	observing 
 //		im:Normalized count of demography:HumanIndividual named normalized_population,
@@ -100,7 +86,27 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 //		],
 //	  	  klab.data.normalize()	  	   
 //	then [1 - self];
-   
+
+// ********************
+// ***** MAPUTO *******
+// ********************
+//model aries.risk.flood.coastal:FloodExposureMetric     
+//	observing 
+//		im:Normalized count of demography:HumanIndividual named normalized_population,
+//		mean_area_of_residential_building_maputo
+//	set to [normalized_population * mean_area_of_residential_building_maputo]
+//	, klab.data.normalize();
+//	
+//model aries.risk.flood.coastal:FloodVulnerabilityMetric     
+//	observing 
+//		im:Gross economics:DomesticProduct named gdp,
+//		mean_height_of_building_maputo	
+//	set to [
+//			def vul = (mean_height_of_building_maputo == 0 ? unknown : gdp * mean_height_of_building_maputo) 
+//			return vul
+//		],
+//	  	  klab.data.normalize()	  	   
+//	then [1 - self];   
 /* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
  */
