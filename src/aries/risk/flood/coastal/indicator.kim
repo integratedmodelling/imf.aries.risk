@@ -21,6 +21,17 @@ number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolutio
 number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#height_impute'
  as mean_height_of_building_beira; 
  
+number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#building_value'    	
+ as mean_residential_property_value_square_meter_maputo; 
+
+number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#est_sqr_m'    
+ as mean_area_of_residential_building_maputo; 
+
+number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#height_impute'
+ as mean_height_of_building_maputo; 
+ 
+
+
 private model aries.risk.flood.coastal:FloodHazardMetric
 	observing 
 		aries.risk.flood.coastal:FloodWaterDepth named flood_depth
