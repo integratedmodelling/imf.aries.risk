@@ -32,7 +32,7 @@ number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resoluti
  
 
 
-private model aries.risk.flood.coastal:FloodHazardMetric
+private model aries.risk.flood.coastal:FloodHazardMetric in m 
 	observing 
 		aries.risk.flood.coastal:FloodWaterDepth named flood_depth
 	lookup (flood_depth, ?) into 
@@ -48,23 +48,23 @@ private model aries.risk.flood.coastal:FloodHazardMetric
 // ********************
 // ***** PAMBANE ******
 // ********************
-//model aries.risk.flood.coastal:FloodExposureMetric     
-//	observing 
-//		im:Normalized count of demography:HumanIndividual named normalized_population,
-//		mean_area_of_residential_building_pambane
-//	set to [normalized_population * mean_area_of_residential_building_pambane]
-//	, klab.data.normalize();
-//	
-//model aries.risk.flood.coastal:FloodVulnerabilityMetric     
-//	observing 
-//		im:Gross economics:DomesticProduct named gdp,
-//		mean_height_of_building_pambane	
-//	set to [
-//			def vul = (mean_height_of_building_pambane == 0 ? unknown : gdp * mean_height_of_building_pambane) 
-//			return vul
-//		],
-//	  	  klab.data.normalize()	  	   
-//	then [1 - self];
+model aries.risk.flood.coastal:FloodExposureMetric     
+	observing 
+		im:Normalized count of demography:HumanIndividual named normalized_population,
+		mean_area_of_residential_building_pambane
+	set to [normalized_population * mean_area_of_residential_building_pambane]
+	, klab.data.normalize();
+	
+model aries.risk.flood.coastal:FloodVulnerabilityMetric     
+	observing 
+		im:Gross economics:DomesticProduct named gdp,
+		mean_height_of_building_pambane	
+	set to [
+			def vul = (mean_height_of_building_pambane == 0 ? unknown : gdp * mean_height_of_building_pambane) 
+			return vul
+		],
+	  	  klab.data.normalize()	  	   
+	then [1 - self];
 
 // ********************
 // ****** BEIRA *******
@@ -107,6 +107,7 @@ private model aries.risk.flood.coastal:FloodHazardMetric
 //		],
 //	  	  klab.data.normalize()	  	   
 //	then [1 - self];   
+	
 /* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
  */
@@ -118,7 +119,8 @@ model aries.risk.flood.coastal:FloodRiskMetric
 	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodHazardMetric,
 	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodExposureMetric,
 	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodVulnerabilityMetric   
-    using im.mca.owa(interpolate_weights = false);
+    using im.mca.owa(interpolate_weights = false)
+    , klab.data.normalize();
     
 model aries.risk.flood.coastal:FloodRiskMetric named flood_risk_metric_by_hand
 	observing 
