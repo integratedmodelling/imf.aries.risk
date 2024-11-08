@@ -26,15 +26,15 @@ model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp8p5_wtsub_20
  * EXPOSURE
  * population for future years 2050 and 2100
  */
-model 	'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2050_ssp5',
-		'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2100_ssp5'
-	as count of demography:HumanIndividual; 
+//model 	'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2050_ssp5',
+//		'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2100_ssp5'
+//	as count of demography:HumanIndividual; 
 
 /*
  * VULNERABILITY
  * GDP for future years 2030, 2050, 2100
  */ 
-model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2030_ssp5',
-		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2050_ssp5',
-		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2100_ssp5'
-    as im:Gross economics:DomesticProduct in USD@2005;
+//model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2030_ssp5',
+//		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2050_ssp5',
+//		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2100_ssp5'
+//    as im:Gross economics:DomesticProduct in USD@2005;
