@@ -9,7 +9,7 @@ project private namespace aries.risk.flood.coastal.data
 model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_hist_rp0005_0',
 		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2030_rp0005_0',
 		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsub_2050_rp0005_0'
-	as aries.risk.flood.coastal:FloodWaterDepth;	
+	as aries.risk.flood.coastal:FloodWaterDepth in m;	
 
 /*
  * EXPOSURE
@@ -17,18 +17,43 @@ model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_historical_wtsu
  */
  
 // 14km resolution:
- model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2000'
+// model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_14km_2000'
 // downscaled to 1km
-//project private model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_1km_2000'
+project private model 'local:caterina.gilli:imf.aries.risk:aries-risk.totalpopulation_sedac_1km_2000'
 	as count of demography:HumanIndividual; 
+	
+model 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
+ 	as im:Mean im:Area of infrastructure:Building; 
+model 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
+ 	as im:Mean im:Area of infrastructure:Building; 
+model 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#est_sqr_m'    
+ 	as im:Mean im:Area of infrastructure:Building; 
+
 
 /*
  * VULNERABILITY
  * Gross Domestic Product (GDP)
+ * Value of building
  */ 
 project private model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2010',
 						'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2020'
     as im:Gross economics:DomesticProduct in USD@2005;
+
+model 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'
+ 	as value of infrastructure:Building;	
+model 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    	
+ 	as value of infrastructure:Building;	
+model 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#building_value'
+ 	as value of infrastructure:Building;
+
+model 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#height_impute'
+ 	as im:Mean im:Height of infrastructure:Building;	
+model 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#height_impute'    	
+ 	as im:Mean im:Height of infrastructure:Building;	
+model 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#height_impute'
+ 	as im:Mean im:Height of infrastructure:Building;
+
+
 
 //model 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'
 // as im:Mean value of landcover:Urban im:Area over 

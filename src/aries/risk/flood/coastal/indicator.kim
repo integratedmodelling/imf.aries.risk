@@ -1,32 +1,6 @@
 project private namespace aries.risk.flood.coastal.indicator
 	using aries.risk.flood.coastal;
  
-number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
- as mean_area_of_residential_building_pambane;    
-
-number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#height_impute'
- as mean_height_of_building_pambane; 
- 
-number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    	
- as mean_residential_property_value_square_meter_beira; 
-
-number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
- as mean_area_of_residential_building_beira; 
-
-number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#height_impute'
- as mean_height_of_building_beira; 
- 
-number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#building_value'    	
- as mean_residential_property_value_square_meter_maputo; 
-
-number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#est_sqr_m'    
- as mean_area_of_residential_building_maputo; 
-
-number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#height_impute'
- as mean_height_of_building_maputo; 
- 
-
-
 private model aries.risk.flood.coastal:FloodHazardMetric in m 
 	observing 
 		aries.risk.flood.coastal:FloodWaterDepth named flood_depth
@@ -57,70 +31,6 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 		],
 	  	  klab.data.normalize()	  	   
 	then [1 - self];
-
-
-// ********************
-// ***** PAMBANE ******
-// ********************
-//model aries.risk.flood.coastal:FloodExposureMetric     
-//	observing 
-//		im:Normalized count of demography:HumanIndividual named normalized_population,
-//		mean_area_of_residential_building_pambane
-//	set to [normalized_population * mean_area_of_residential_building_pambane]
-//	, klab.data.normalize();
-//	
-//model aries.risk.flood.coastal:FloodVulnerabilityMetric     
-//	observing 
-//		im:Gross economics:DomesticProduct named gdp,
-//		mean_height_of_building_pambane	
-//	set to [
-//			def vul = (mean_height_of_building_pambane == 0 ? unknown : gdp * mean_height_of_building_pambane) 
-//			return vul
-//		],
-//	  	  klab.data.normalize()	  	   
-//	then [1 - self];
-
-// ********************
-// ****** BEIRA *******
-// ********************
-//model aries.risk.flood.coastal:FloodExposureMetric     
-//	observing 
-//		im:Normalized count of demography:HumanIndividual named normalized_population,
-//		mean_area_of_residential_building_beira
-//	set to [normalized_population * mean_area_of_residential_building_beira]
-//	, klab.data.normalize();
-//	
-//model aries.risk.flood.coastal:FloodVulnerabilityMetric     
-//	observing 
-//		im:Gross economics:DomesticProduct named gdp,
-//		mean_height_of_building_beira	
-//	set to [
-//			def vul = (mean_height_of_building_beira == 0 ? unknown : gdp * mean_height_of_building_beira) 
-//			return vul
-//		],
-//	  	  klab.data.normalize()	  	   
-//	then [1 - self];
-
-// ********************
-// ***** MAPUTO *******
-// ********************
-//model aries.risk.flood.coastal:FloodExposureMetric     
-//	observing 
-//		im:Normalized count of demography:HumanIndividual named normalized_population,
-//		mean_area_of_residential_building_maputo
-//	set to [normalized_population * mean_area_of_residential_building_maputo]
-//	, klab.data.normalize();
-//	
-//model aries.risk.flood.coastal:FloodVulnerabilityMetric     
-//	observing 
-//		im:Gross economics:DomesticProduct named gdp,
-//		mean_height_of_building_maputo	
-//	set to [
-//			def vul = (mean_height_of_building_maputo == 0 ? unknown : gdp * mean_height_of_building_maputo) 
-//			return vul
-//		],
-//	  	  klab.data.normalize()	  	   
-//	then [1 - self];   
 	
 /* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
