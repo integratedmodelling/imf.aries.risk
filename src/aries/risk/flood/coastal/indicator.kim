@@ -40,9 +40,9 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 @parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
 model aries.risk.flood.coastal:FloodRiskMetric  
 	observing 
-	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodHazardMetric,
+	    @criterion(relweight ?= 2) aries.risk.flood.coastal:FloodHazardMetric,
 	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodExposureMetric,
-	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodVulnerabilityMetric   
+	    @criterion(relweight ?= 2) aries.risk.flood.coastal:FloodVulnerabilityMetric   
     using im.mca.owa(interpolate_weights = false)
     , klab.data.normalize();
     
@@ -69,7 +69,8 @@ model aries.risk.flood.coastal:FloodRiskMetric
 project private model each earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric named hotspots
 	"Hotspots are identified by clustering the total risk index whose value lies above a chosen threshold."
 	observing aries.risk.flood.coastal:FloodRiskMetric named risk
-	using     gis.points.cluster(select = [ risk > risk.max*3/5]);	
+using     gis.points.cluster(select = [ risk > risk.max*1/5], minpoints = 3);	
+//using gis.features.extract(select = [ hazard > 0 && hazard < 8], simplify = FALSE);
 	
 thing Hotspot equals earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric;	
 	
