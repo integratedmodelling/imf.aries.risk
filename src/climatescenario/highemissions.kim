@@ -20,7 +20,7 @@ scenario climatescenario.highemissions
  */
 model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp8p5_wtsub_2030_rp0005_0',
 		'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp8p5_wtsub_2050_rp0005_0'
-	as aries.risk.flood.coastal:FloodWaterDepth;	
+	as aries.risk.flood.coastal:FloodWaterDepth in m;	
 
 /*
  * EXPOSURE
