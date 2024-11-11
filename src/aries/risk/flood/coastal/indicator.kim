@@ -43,15 +43,16 @@ private model im:Normalized aries.risk.flood.coastal:FloodHazardMetric
         > 4           |    1 ;
        
 model aries.risk.flood.coastal:FloodHazardMetric        
-observing im:Normalized aries.risk.flood.coastal:FloodHazardMetric named nfhm
-using gis.points.collect(aggregate = [ nfhm ], aggregation = "max", cellradius?=3); 
+	observing 
+		im:Normalized aries.risk.flood.coastal:FloodHazardMetric named nfhm
+	using gis.points.collect(aggregate = [ nfhm ], aggregation = "max", cellradius?=3); 
 
 model aries.risk.flood.coastal:FloodExposureMetric     
 	observing 
 		im:Normalized count of demography:HumanIndividual named normalized_population,
 		im:Mean im:Area of infrastructure:Building named mean_area_of_residential_building
 	set to [normalized_population * mean_area_of_residential_building],
-//using gis.points.collect(aggregate = [ normalized_population * mean_area_of_residential_building], aggregation = "max", cellradius?=3),
+	//using gis.points.collect(aggregate = [ normalized_population * mean_area_of_residential_building], aggregation = "max", cellradius?=3),
 	 klab.data.normalize();
 	
 model aries.risk.flood.coastal:FloodVulnerabilityMetric     
@@ -63,7 +64,7 @@ model aries.risk.flood.coastal:FloodVulnerabilityMetric
 //			return vul
 //		], 	  
     using gis.points.collect(aggregate = [ gdp ], aggregation = "max", cellradius?=3),
-klab.data.normalize();	  	   
+	klab.data.normalize();	  	   
 //	then [1 - self]; I Don't think this should be the case (SB)
 
 	
@@ -94,15 +95,18 @@ number mca_flood_risk
   set to [1 - self ];
   
 model aries.risk.flood.coastal:FloodRiskMetric   
-observing mca_flood_risk
-using gis.points.collect(aggregate = [mca_flood_risk], aggregation = "max", cellradius?=4);  
+	observing 
+		mca_flood_risk
+	using gis.points.collect(aggregate = [mca_flood_risk], aggregation = "max", cellradius?=4);  
   
-thing Hotspots equals earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric;
+thing Hotspots 
+	equals earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric;
 
 @parameter(label = 'Risk threshold', default=0.5, name = risk_threshold)
 project private model each earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric named hotspots
 	"Hotspots are identified by clustering the total risk index whose value lies above a chosen threshold."
-	observing aries.risk.flood.coastal:FloodRiskMetric   named risk
+	observing 
+		aries.risk.flood.coastal:FloodRiskMetric   named risk
 	using     gis.points.cluster(select = [ risk > risk.max*2/5]);	
 
 number pop_by_hotspot
