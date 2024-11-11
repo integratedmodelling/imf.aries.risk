@@ -1,9 +1,37 @@
 project private namespace aries.risk.flood.coastal.indicator
 	using aries.risk.flood.coastal;
  
-private model aries.risk.flood.coastal:FloodHazardMetric in m 
+private model aries.risk.flood.coastal:FloodHazardMetric in m;
+
+//number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
+// as mean_area_of_residential_building_pambane;    
+//
+//number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#height_impute'
+// as mean_height_of_building_pambane; 
+// 
+//number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#building_value'    	
+// as mean_residential_property_value_square_meter_beira; 
+//
+//number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#est_sqr_m'    
+// as mean_area_of_residential_building_beira; 
+//
+//number 'local:sudeshna.kumar:imf.aries.risk:imf_beira_mozambique_aggh3_resolution10#height_impute'
+// as mean_height_of_building_beira; 
+// 
+//number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#building_value'    	
+// as mean_residential_property_value_square_meter_maputo; 
+//
+//number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#est_sqr_m'    
+// as mean_area_of_residential_building_maputo; 
+//
+//number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#height_impute'
+// as mean_height_of_building_maputo; 
+ 
+
+
+private model im:Normalized aries.risk.flood.coastal:FloodHazardMetric 
 	observing 
-		aries.risk.flood.coastal:FloodWaterDepth named flood_depth
+		 aries.risk.flood.coastal:FloodWaterDepth in m named flood_depth
 	lookup (flood_depth, ?) into 
 	    flood_depth   |	hazard   
 ---------------------------------------------------------------------
@@ -12,88 +40,82 @@ private model aries.risk.flood.coastal:FloodHazardMetric in m
         1 to 2        |    0.4,       
 		2 to 3        |    0.6,           
 		3 to 4        |    0.8,      
-        > 4           |    1 ; 
+        > 4           |    1 ;
+       
+model aries.risk.flood.coastal:FloodHazardMetric        
+observing im:Normalized aries.risk.flood.coastal:FloodHazardMetric named nfhm
+using gis.points.collect(aggregate = [ nfhm ], aggregation = "max", cellradius?=3); 
 
 model aries.risk.flood.coastal:FloodExposureMetric     
 	observing 
 		im:Normalized count of demography:HumanIndividual named normalized_population,
-		im:Mean im:Area of infrastructure:Building named mean_area_of_residential_building_pambane
-	set to [normalized_population * mean_area_of_residential_building_pambane]
-	, klab.data.normalize();
+		im:Mean im:Area of infrastructure:Building named mean_area_of_residential_building
+	set to [normalized_population * mean_area_of_residential_building],
+//using gis.points.collect(aggregate = [ normalized_population * mean_area_of_residential_building], aggregation = "max", cellradius?=3),
+	 klab.data.normalize();
 	
 model aries.risk.flood.coastal:FloodVulnerabilityMetric     
 	observing 
-		im:Gross economics:DomesticProduct named gdp,
-		im:Mean im:Height of infrastructure:Building named mean_height_of_building_pambane	
-	set to [
-			def vul = (mean_height_of_building_pambane == 0 ? unknown : gdp * mean_height_of_building_pambane) 
-			return vul
-		],
-	  	  klab.data.normalize()	  	   
-	then [1 - self];
+		im:Gross economics:DomesticProduct named gdp
+//		mean_height_of_building_pambane	
+//	set to [
+//			def vul = (mean_height_of_building_pambane == 0 ? unknown : gdp * mean_height_of_building_pambane) 
+//			return vul
+//		], 	  
+    using gis.points.collect(aggregate = [ gdp ], aggregation = "max", cellradius?=3),
+klab.data.normalize();	  	   
+//	then [1 - self]; I Don't think this should be the case (SB)
+
 	
 /* 
  * Ordered Weighted Averages (OWA)-based composite risk indicator
  */
-@parameter(label = 'Risk aversion', default=0.5, name = risk_profile) 
-@parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
-@parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
-model aries.risk.flood.coastal:FloodRiskMetric  
-	observing 
-	    @criterion(relweight ?= 2) aries.risk.flood.coastal:FloodHazardMetric,
-	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodExposureMetric,
-	    @criterion(relweight ?= 2) aries.risk.flood.coastal:FloodVulnerabilityMetric   
-    using im.mca.owa(interpolate_weights = false)
-    , klab.data.normalize();
-    
-//project private model aries.risk.flood.coastal:FloodRiskMetric named flood_risk_metric_by_hand
+//@parameter(label = 'Risk aversion', default=0.5, name = risk_profile) 
+//@parameter(label = 'Risk neutral profile?', default=false, name = balanced_risk_prof)
+//@parameter(label = 'Ratio between median and extremes', default=1, name = ratio_balance)
+//model aries.risk.flood.coastal:FloodRiskMetric  
 //	observing 
-//	    aries.risk.flood.coastal:FloodHazardMetric named hazard,
-//	    aries.risk.flood.coastal:FloodExposureMetric named exposure,
-//	    aries.risk.flood.coastal:FloodVulnerabilityMetric named vulnerability  
-//    set to [(hazard + exposure + vulnerability)/3];
+//	    @criterion(relweight ?= 2) aries.risk.flood.coastal:FloodHazardMetric,
+//	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodExposureMetric,
+//	    @criterion(relweight ?= 1) aries.risk.flood.coastal:FloodVulnerabilityMetric   
+//    using im.mca.owa(interpolate_weights = false)
+//    , klab.data.normalize();
 	    
  /*
   * MCA using the EVAMIX algorithm for spatially-explicit concordance metrics with
   * stakeholder prioritization
   */
- number mca_uhi_risk
+number mca_flood_risk
   observing 
  	  @cost(value?=1) aries.risk.flood.coastal:FloodHazardMetric,
 	  @cost(value?=1) aries.risk.flood.coastal:FloodExposureMetric,
 	  @cost(value?=1) aries.risk.flood.coastal:FloodVulnerabilityMetric   
   using im.mca.concordance(levels = 10) 
   set to [1 - self ];
-	    
+  
+model aries.risk.flood.coastal:FloodRiskMetric   
+observing mca_flood_risk
+using gis.points.collect(aggregate = [mca_flood_risk], aggregation = "max", cellradius?=4);  
+  
+thing Hotspots equals earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric;
+
 @parameter(label = 'Risk threshold', default=0.5, name = risk_threshold)
 project private model each earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric named hotspots
 	"Hotspots are identified by clustering the total risk index whose value lies above a chosen threshold."
-	observing aries.risk.flood.coastal:FloodRiskMetric named risk
-using     gis.points.cluster(select = [ risk > risk.max*1/5], minpoints = 3);	
-//using gis.features.extract(select = [ hazard > 0 && hazard < 8], simplify = FALSE);
-	
-thing Hotspot equals earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric;	
-	
-number gdp
-	observing  
-		im:Gross economics:DomesticProduct in USD@2005 by Hotspot
-	set to [pop]; 
+	observing aries.risk.flood.coastal:FloodRiskMetric   named risk
+	using     gis.points.cluster(select = [ risk > risk.max*2/5]);	
 
-number pop
+number pop_by_hotspot
 	observing  
-		count of demography:HumanIndividual by Hotspot 
-	set to [pop]; 
+		count of demography:HumanIndividual by Hotspots; 
 
-number value_buildings
+number building_value_by_hotspot
 	observing
-		value of infrastructure:Building by Hotspot
-	set to [value_building];
+		value of infrastructure:Building by Hotspots;
 
-number cicco
-observing  
-count of demography:HumanIndividual by Hotspot 
-set to [cicco]; 
-//model im:Normalized count of demography:HumanIndividual by earth:Location with im:Relevant aries.risk.flood.coastal:FloodRiskMetric;
+number gdp_by_hotspot
+	observing 
+		im:Gross economics:DomesticProduct by Hotspots; 
 
 	
 //model aries.risk.flood.coastal:FloodVulnerabilityMetric     
