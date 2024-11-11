@@ -36,8 +36,8 @@ model 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolutio
  * Value of building
  */ 
 project private model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2010',
-						'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2020',
-						'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2050_ssp5'
+						'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2020'
+//						'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2050_ssp5'
     as im:Gross economics:DomesticProduct in USD@2005;
 
 model 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#building_value'

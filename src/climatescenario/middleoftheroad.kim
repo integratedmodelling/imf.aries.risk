@@ -33,7 +33,7 @@ model 	'local:caterina.gilli:imf.aries.risk:aries-risk.inuncoast_rcp4p5_wtsub_20
  * VULNERABILITY
  * GDP for future years 2030, 2050, 2100
  */ 
-//model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2030_ssp2',
-//		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2050_ssp2',
-//		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2100_ssp2'
-//    as im:Gross economics:DomesticProduct in USD@2005;
+model 	'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2030_ssp2',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2050_ssp2',
+		'local:caterina.gilli:imf.aries.risk:aries-risk.gdp_wang_1km_2100_ssp2'
+    as im:Gross economics:DomesticProduct in USD@2005;
