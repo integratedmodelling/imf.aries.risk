@@ -1,7 +1,7 @@
 project private namespace aries.risk.flood.coastal.indicator
 	using aries.risk.flood.coastal;
  
-private model aries.risk.flood.coastal:FloodHazardMetric in m;
+//private model aries.risk.flood.coastal:FloodHazardMetric in m;
 
 //number 'local:sudeshna.kumar:imf.aries.risk:imf_pambane_mozambique_aggh3_resolution10#est_sqr_m'
 // as mean_area_of_residential_building_pambane;    
@@ -26,8 +26,6 @@ private model aries.risk.flood.coastal:FloodHazardMetric in m;
 //
 //number 'local:caterina.gilli:imf.aries.risk:imf_maputo_mozambique_aggh3_resolution10#height_impute'
 // as mean_height_of_building_maputo; 
- 
-
 
 private model im:Normalized aries.risk.flood.coastal:FloodHazardMetric 
 	observing 
