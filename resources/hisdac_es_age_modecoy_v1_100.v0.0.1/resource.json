@@ -1,0 +1,47 @@
+{
+  "urn" : "local:caterina.gilli:imf.aries.risk:hisdac_es_age_modecoy_v1_100",
+  "version" : "0.0.1",
+  "adapterType" : "raster",
+  "localPath" : "imf.aries.risk/resources/hisdac_es_age_modecoy_v1_100.v0.0.1",
+  "geometry" : "S2(23600,15570){bbox=[1541000.0 3901000.0 942000.0 2499000.0],proj=EPSG:3035}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "hisdac_es_age_modecoy_v1_100.tif",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1744292634988,
+  "metadata" : {
+    "im:keywords" : "",
+    "dc:comment" : "Temporal characteristic of the built environment in Spain from 2020.\r\nRefers to the mode of year of construction of bulidings in a 100m resoultion grid for all Spain (including extrapeninsular).\r\n",
+    "im:notes" : "",
+    "dc:title" : "Mode (most frequent) construction year per grid cell from HISDAC-ES",
+    "dc:url" : "https://doi.org/10.6084/m9.figshare.22009643",
+    "dc:creator" : "Uhl, J.H.,\r\nRoyé, D., \r\nBurghardt, K., \r\nAldrey Vázquez, J.A., \r\nBorobio Sanchiz, M., \r\nLeyk, S.",
+    "im:thematic-area" : "Infrastructure",
+    "dc:originator" : "",
+    "im:geographic-area" : "Spain",
+    "dc:source" : "Uhl, J. H., Royé, D., Burghardt, K., Aldrey Vázquez, J. A., Borobio Sanchiz, M., & Leyk, S. (2023). HISDAC-ES: Historical settlement data compilation for Spain (1900–2020). Earth System Science Data, 15(10), 4713–4747. https://doi.org/10.5194/essd-15-4713-2023"
+  },
+  "parameters" : {
+    "transform" : "",
+    "nodata" : "0"
+  },
+  "localPaths" : "imf.aries.risk/resources/hisdac_es_age_modecoy_v1_100.v0.0.1/hisdac_es_age_modecoy_v1_100.tif",
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : {
+    "east" : 5.652353760940408,
+    "west" : -23.569359749056662,
+    "north" : 45.46719625046176,
+    "south" : 26.909835931554397,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : {
+    "zip" : "GeoTiff"
+  }
+}

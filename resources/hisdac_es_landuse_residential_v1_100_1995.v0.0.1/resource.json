@@ -1,0 +1,35 @@
+{
+  "urn" : "local:caterina.gilli:imf.aries.risk:hisdac_es_landuse_residential_v1_100_1995",
+  "version" : "0.0.1",
+  "adapterType" : "raster",
+  "localPath" : "imf.aries.risk/resources/hisdac_es_landuse_residential_v1_100_1995.v0.0.1",
+  "geometry" : "S2(23600,15570){bbox=[1541000.0 3901000.0 942000.0 2499000.0],proj=EPSG:3035}",
+  "projectName" : "imf.aries.risk",
+  "localName" : "hisdac_es_landuse_residential_v1_100_1995.tif",
+  "type" : "NUMBER",
+  "resourceTimestamp" : 1744292752897,
+  "metadata" : { },
+  "parameters" : {
+    "transform" : ""
+  },
+  "localPaths" : "imf.aries.risk/resources/hisdac_es_landuse_residential_v1_100_1995.v0.0.1/hisdac_es_landuse_residential_v1_100_1995.tif",
+  "history" : [ ],
+  "notifications" : [ ],
+  "attributes" : [ ],
+  "spatialExtent" : {
+    "east" : 5.652353760940408,
+    "west" : -23.569359749056662,
+    "north" : 45.46719625046176,
+    "south" : 26.909835931554397,
+    "gridResolution" : null,
+    "gridUnit" : null
+  },
+  "dependencies" : null,
+  "outputs" : null,
+  "categorizables" : [ ],
+  "codelists" : [ ],
+  "availability" : null,
+  "exportFormats" : {
+    "zip" : "GeoTiff"
+  }
+}
