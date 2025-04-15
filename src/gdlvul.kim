@@ -197,9 +197,9 @@ define VULNERABILITY as {{
 quantity GDLVulnerabilityMetric
 	describes risk:VulnerabilityMetric probability of im:Collapse of demography:SocialGroup;
 
-quantity InformHazardMetric
-	describes risk:HazardMetric probability of im:Collapse of demography:SocialGroup;
-	
+//quantity InformHazardMetric
+//	describes risk:HazardMetric probability of im:Collapse of demography:SocialGroup;
+//	
 //quantity InformRiverFloodHazardMetric
 //	describes risk:HazardMetric probability of im:Collapse of demography:SocialGroup;
 
